@@ -22,7 +22,14 @@ export default async function getCurrentUser() {
       return null
     }
 
-    return user
+    const { hashedPassword, ...rest } = user;
+
+    return {
+      ...rest,
+      createdAt: user.createdAt.toISOString(),
+      updatedAt: user.updatedAt.toISOString(),
+      emailVerified: user.emailVerified?.toISOString() || null
+    }
   } catch (error: any) {
     return null;
   }

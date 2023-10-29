@@ -99,7 +99,7 @@ const LoginModal = () => {
         label='Continue with Github'
         icon={AiFillGithub}
         outline
-        onClick={() => { }}
+        onClick={() => signIn('github')}
       />
       <div
         className='
