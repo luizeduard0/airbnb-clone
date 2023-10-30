@@ -4,7 +4,7 @@ import axios from 'axios'
 import { signIn } from 'next-auth/react';
 import { AiFillGithub } from 'react-icons/ai'
 import { FcGoogle } from "react-icons/fc";
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   FieldValues,
   SubmitHandler,
@@ -39,25 +39,25 @@ const LoginModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true)
-    
+
     signIn('credentials', {
       ...data,
       redirect: false,
     })
-    .then((callback) => {
-      setIsLoading(false)
+      .then((callback) => {
+        setIsLoading(false)
 
-      if(callback?.ok) {
-        toast.success('Logged in successfully')
-        router.refresh()
-        loginModal.onClose()
+        if (callback?.ok) {
+          toast.success('Logged in successfully')
+          router.refresh()
+          loginModal.onClose()
 
-      }
-      
-      if(callback?.error) {
-        toast.error(callback.error)
-      }
-    })
+        }
+
+        if (callback?.error) {
+          toast.error(callback.error)
+        }
+      })
   }
 
   const bodyContent = (
@@ -86,6 +86,11 @@ const LoginModal = () => {
     </div>
   )
 
+  const toggle = useCallback(() => {
+    loginModal.onClose()
+    registerModal.onOpen()
+  }, [loginModal, registerModal])
+
   const footerContent = (
     <div className='flex flex-col gap-4 mt-3'>
       <hr />
@@ -112,16 +117,16 @@ const LoginModal = () => {
         <div className='flex flex-row items-center gap-2 justify-center'>
           <div>
           </div>
-          Already have an account?
+          First time using Airbnb?
           <div
-            onClick={registerModal.onClose}
+            onClick={toggle}
             className='
               text-neutral-800
               cursor-pointer
               hover:underline
             '
           >
-            Log in
+            Create an account
           </div>
         </div>
       </div>
