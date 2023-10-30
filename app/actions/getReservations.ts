@@ -1,4 +1,5 @@
 import prisma from "@/app/libs/prismaDb";
+import { SafeReservation } from "../types";
 
 interface IParams {
   listingId?: string;
@@ -45,7 +46,7 @@ export default async function getReservations(params: IParams) {
       },
     }));
 
-    return safeReservations;
+    return safeReservations as SafeReservation[];
   } catch (error: any) {
     throw new Error(error);
   }

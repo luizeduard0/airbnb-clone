@@ -4,14 +4,14 @@ import Container from "@/app/components/Container"
 import { categories } from "@/app/components/navbar/Categories"
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types"
 import { useCallback, useEffect, useMemo, useState } from "react"
-import ListingHead from "./ListingHead"
-import ListingInfo from "./ListingInfo"
+import ListingHead from "../../components/listings/ListingHead"
+import ListingInfo from "../../components/listings/ListingInfo"
 import useLoginModal from "@/app/hooks/useLoginModal"
 import { useRouter } from "next/navigation"
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns"
 import axios from "axios"
 import toast from "react-hot-toast"
-import ListingReservation from "./ListingReservation"
+import ListingReservation from "../../components/listings/ListingReservation"
 import { Range } from "react-date-range"
 
 const initialDateRange = {
@@ -74,7 +74,7 @@ export default function ListingClient({
     })
       .then(() => {
         toast.success('Reservation created successfully')
-        router.refresh()
+        router.push('/trips')
       })
       .catch(() => {
         toast.error('Something went wrong')
