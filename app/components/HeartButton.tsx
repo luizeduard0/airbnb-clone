@@ -6,7 +6,7 @@ import useFavorite from "../hooks/useFavorites"
 
 interface HeartButtonProps {
   listingId: string
-  currentUser: SafeUser | null
+  currentUser?: SafeUser | null
 }
 
 export default function HeartButton({
