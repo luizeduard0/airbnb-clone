@@ -58,10 +58,12 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
           onClick={toggleOpen}
           className='
             py-4
+            xs:px-4
+            sm:px-4
             md:py-1
             md:px-2
-            border-[1px]
-            border-neutral-200
+            md:border-[1px]
+          md:border-neutral-200
             flex flex-row
             items-center
             gap-3
@@ -69,6 +71,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
             cursor-pointer
             hover:shadow-md
             transition
+            sm:border-transparent
           '
         >
           <AiOutlineMenu />
